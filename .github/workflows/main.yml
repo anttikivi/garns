@@ -1,0 +1,25 @@
+name: Main workflow
+
+on: [push, pull_request]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    if:
+      "!contains(github.event.head_commit.message, '[ci skip]') && !startsWith(github.event.head_commit.message, 'docs')"
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v4.1.1
+
+
+    - name: Set up Go
+      uses: actions/setup-go@v5.0.0
+      with:
+        go-version: '1.21'
+
+    - name: Build
+      run: go build -v ./...
+
+    - name: Test
+      run: go test -v ./...
