@@ -32,12 +32,15 @@ but the unknown empty places can be represented by either a dot (` + "`.`" +
 			os.Exit(1)
 		}
 
-		puzzle, err := puzzle.Parse(lines)
+		p, err := puzzle.Parse(lines)
 		if err != nil {
 			fmt.Fprintln(os.Stderr, "Error while parsing the puzzle input:", err)
 			os.Exit(2)
 		}
-		fmt.Print(puzzle)
+		puzzle.Print(p)
+		fmt.Println()
+		s, _ := puzzle.Solve(p)
+		puzzle.Print(s)
 	},
 }
 

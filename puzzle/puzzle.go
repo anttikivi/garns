@@ -14,6 +14,7 @@ type Puzzle [][]Place
 
 const Unresolved Place = 0
 const Len = 9
+const MaxValue Place = Place(Len)
 
 func Parse(input []string) (Puzzle, error) {
 	var p Puzzle
@@ -31,4 +32,16 @@ func Parse(input []string) (Puzzle, error) {
 		p = append(p, row)
 	}
 	return p, nil
+}
+
+func Print(p Puzzle) {
+	for _, row := range p {
+		for x, b := range row {
+			if x > 0 {
+				fmt.Print(" ")
+			}
+			fmt.Print(b)
+		}
+		fmt.Println()
+	}
 }
