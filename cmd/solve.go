@@ -8,13 +8,14 @@ import (
 
 var solveCmd = &cobra.Command{
 	Use:   "solve",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Solve a Sudoku given as the input",
+	Long: `Solve a Sudoku puzzle given as input. Input can be passed in using
+the ` + "`--flag`" + ` option. The output is printed in ` + "`stdout`" + `.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+Please note that the input file must be a text file containing nine lines of
+nine character. Each known number at the start of the puzzle should be as is,
+but the unknown empty places can be represented by either a dot (` + "`.`" +
+		`) or a zero (` + "`0`" + `).`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("solve called")
 
@@ -26,7 +27,7 @@ to quickly create a Cobra application.`,
 func init() {
 	rootCmd.AddCommand(solveCmd)
 
-	rootCmd.PersistentFlags().StringP("file", "f", "", "File containing the Sudoku input")
-	rootCmd.MarkPersistentFlagFilename("file")
-	rootCmd.MarkPersistentFlagRequired("file")
+	solveCmd.Flags().StringP("file", "f", "", "File containing the Sudoku input")
+	solveCmd.MarkFlagFilename("file")
+	solveCmd.MarkFlagRequired("file")
 }

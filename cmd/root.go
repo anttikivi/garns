@@ -8,16 +8,17 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "garns",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+	Short: "Garns is a simple command line Sudoku-solver",
+	Long: `Garns is a simple command line Sudoku-solver named of the Howard
+Garns, the creator of Number Place which later came to be globally known as
+'Sudoku'.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+Garns can take I simple text file containing a Sudoku puzzle as its input and
+use I backtracking algorithm to solve it. For more information on the solving
+functionality, run ` + "`garns help solve`" + `.`,
 
-	Run: func(cmd *cobra.Command, args []string) {
-	},
+	// Run: func(cmd *cobra.Command, args []string) {
+	// },
 }
 
 func Execute() {
