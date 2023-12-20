@@ -2,7 +2,10 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 
+	"github.com/anttikivi/garns/puzzle"
+	"github.com/anttikivi/garns/util"
 	"github.com/spf13/cobra"
 )
 
@@ -21,6 +24,20 @@ but the unknown empty places can be represented by either a dot (` + "`.`" +
 
 		fileFlag, _ := cmd.Flags().GetString("file")
 		fmt.Println("The file was", fileFlag)
+
+		lines, err := util.ReadLines(fileFlag)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, "Unable to read the file", fileFlag)
+			cmd.Usage()
+			os.Exit(1)
+		}
+
+		puzzle, err := puzzle.Parse(lines)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, "Error while parsing the puzzle input:", err)
+			os.Exit(2)
+		}
+		fmt.Print(puzzle)
 	},
 }
 
