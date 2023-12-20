@@ -1,7 +1,5 @@
 package puzzle
 
-import "fmt"
-
 // findUnresolved searches the given Puzzle p and returns the x and y
 // coordinates of the first unresolved place in the grid. If no unresolved
 // places are found, it returns -1, -1.
@@ -19,7 +17,6 @@ func findUnresolved(p Puzzle) (int, int) {
 func Solve(p Puzzle) (Puzzle, bool) {
 	x, y := findUnresolved(p)
 	if x == -1 || y == -1 {
-		fmt.Println("Seems like the given input is already solved!")
 		return p, true
 	}
 
